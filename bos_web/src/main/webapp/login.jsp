@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -62,13 +63,13 @@ input[type=password] {
 					action="${pageContext.request.contextPath }/userAction_login.action">
 					<div id="idInputLine" class="loginFormIpt showPlaceholder"
 						style="margin-top: 5px;">
-						<input id="loginform:idInput" type="text" name="username"
+						<input id="idInput" type="text" name="username"
 							class="loginFormTdIpt" maxlength="50" />
 						<label for="idInput" class="placeholder" id="idPlaceholder">帐号：</label>
 					</div>
 					<div class="forgetPwdLine"></div>
 					<div id="pwdInputLine" class="loginFormIpt showPlaceholder">
-						<input id="loginform:pwdInput" class="loginFormTdIpt" type="password"
+						<input id="pwdInput" class="loginFormTdIpt" type="password"
 							name="password" value="" />
 						<label for="pwdInput" class="placeholder" id="pwdPlaceholder">密码：</label>
 					</div>
@@ -86,6 +87,9 @@ input[type=password] {
 							id="loginform:loginBtn" class="btn btn-login"
 							style="margin-top:-36px;">登录</span>
 						</a>
+					</div>
+					<div>
+						<s:actionerror/>
 					</div>
 				</form>
 			</div>
