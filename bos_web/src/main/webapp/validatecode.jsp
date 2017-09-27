@@ -30,6 +30,7 @@
 	}
 	// generate a random code
 	String capstr = hash1.substring(0, 4);
+	System.out.println("验证码是: "+capstr);
 	session.setAttribute("key", capstr);
 	g.setColor(new Color(0, 100, 0));
 	g.setFont(new Font("Candara", Font.BOLD, 24));
