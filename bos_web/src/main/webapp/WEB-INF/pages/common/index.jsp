@@ -211,7 +211,7 @@
 				<tr>
 					<td style="width: 300px;">
 						<div style="color: #999; font-size: 8pt;">
-							传智播客 | Powered by <a href="http://www.itcast.cn/">itcast.cn</a>
+							xxxxx | Powered by <a href="http://www.baidu.com/">baidu.com</a>
 						</div>
 					</td>
 					<td style="width: *;" class="co1"><span id="online"
@@ -224,20 +224,24 @@
 	
 	<!--修改密码窗口-->
     <div id="editPwdWindow" class="easyui-window" title="修改密码" collapsible="false" minimizable="false" modal="true" closed="true" resizable="false"
-        maximizable="false" icon="icon-save"  style="width: 300px; height: 160px; padding: 5px;
+        maximizable="false" icon="icon-save"  style="width: 300px; height: 175px; padding: 5px;
         background: #fafafa">
         <div class="easyui-layout" fit="true">
             <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
                 <table cellpadding=3>
-                    <tr>
-                        <td>新密码：</td>
-                        <td><input id="txtNewPass" type="Password" class="txt01" /></td>
-                    </tr>
-                    <tr>
-                        <td>确认密码：</td>
-                        <td><input id="txtRePass" type="Password" class="txt01" /></td>
-                    </tr>
-                </table>
+					<tr>
+						<td>密    码：</td>
+						<td><input id="txtOldPass" type="Password" class="txt01 easyui-validatebox" data-options="required:true"/></td>
+					</tr>
+					<tr>
+						<td>新密码：</td>
+						<td><input id="txtNewPass" type="Password" class="txt01 easyui-validatebox" data-options="required:true"/></td>
+					</tr>
+					<tr>
+						<td>确认密码：</td>
+						<td><input id="txtRePass" type="Password" class="txt01 easyui-validatebox" data-options="required:true"/></td>
+					</tr>
+				</table>
             </div>
             <div region="south" border="false" style="text-align: right; height: 30px; line-height: 30px;">
                 <a id="btnEp" class="easyui-linkbutton" icon="icon-ok" href="javascript:void(0)" >确定</a> 
