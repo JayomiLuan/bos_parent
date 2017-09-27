@@ -39,7 +39,7 @@
 		<!-- 选项卡 -->
 		<div id="tt" class="easyui-tabs" fit="true">
 			<div title="面板一" data-options="iconCls:'icon-help',closable:true">1</div>
-			<div title="面板二">1</div>
+			<div title="面板二" data-options="closable:true">1</div>
 			<div title="面板三">1</div>
 			<div title="面板四">1</div>
 		</div>

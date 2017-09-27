@@ -2,13 +2,8 @@
 .gitignore
 .idea/
 bos_dao/bos_dao.iml
-bos_dao/src/
 bos_domain/bos_domain.iml
-bos_domain/src/
 bos_parent.iml
 bos_service/bos_service.iml
-bos_service/src/
 bos_utils/bos_utils.iml
-bos_utils/src/
-bos_web/src/main/java/
 bos_web/target/
