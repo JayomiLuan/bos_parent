@@ -11,4 +11,6 @@ public interface IBaseDao<T> {
     T findById(Serializable id);
     //多个
     List<T> findAll();
+
+    void excuteUpdate(String s, Object...objects);
 }

@@ -2,6 +2,7 @@ package cn.com.sinosoft.web.action;
 
 import cn.com.sinosoft.domain.User;
 import cn.com.sinosoft.service.IUserService;
+import cn.com.sinosoft.utils.CommonUtils;
 import cn.com.sinosoft.utils.MD5Utils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
@@ -9,7 +10,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Controller
 @Scope("prototype")
@@ -50,4 +53,34 @@ public class UserAction extends BaseAction<User> {
         return "login";
     }
 
+    //修改密码
+    public String editPassword(){
+        System.out.println(model.getPassword());
+        String[] pwd = model.getPassword().split("-");
+        model.setPassword(pwd[1].toString());
+        String flag = "1";
+        //旧密码与新密码相等
+        String password1 = CommonUtils.getLoginUser().getPassword();//session中的用户的密码,相当于数据库中的旧密码
+        String oldPassword = MD5Utils.md5(pwd[0].toString());//从前台获取的密码,并md5加密
+        if(!oldPassword.equals(password1)){
+            flag = "2";
+        }else{
+            try{
+                userService.editPassword(model);
+            }catch(Exception e){
+                flag = "0";
+                e.printStackTrace();
+            }
+
+        }
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setContentType("text/html;charset=utf-8");
+        try {
+            response.getWriter().print(flag);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return NONE;
+    }
 }

@@ -1,6 +1,7 @@
 package cn.com.sinosoft.dao.base.impl;
 
 import cn.com.sinosoft.dao.base.IBaseDao;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
@@ -59,6 +60,22 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
     public List<T> findAll() {
         String hql = "from " + entityClass.getName();
         return (List<T>) this.getHibernateTemplate().find(hql);
+    }
+
+    /**
+     * 实现通用的更新方法
+     * @param s
+     * @param objects
+     */
+    @Override
+    public void excuteUpdate(String s, Object...objects) {
+        Query namedQuery = this.getSessionFactory().getCurrentSession().getNamedQuery(s);
+        int index = 0;
+        for (Object object : objects) {
+            namedQuery.setParameter(index,object);
+            index++;
+        }
+        namedQuery.executeUpdate();
     }
 
 }

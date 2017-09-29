@@ -7,9 +7,8 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
-
 	protected T model;//new User();
-	
+
 	@Override
 	public T getModel() {
 		return model;
@@ -30,7 +29,6 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 		try {
 			model = entityClass.newInstance();//new User();
 		} catch (InstantiationException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
