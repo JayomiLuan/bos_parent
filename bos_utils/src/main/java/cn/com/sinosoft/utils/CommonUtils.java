@@ -12,5 +12,4 @@ public class CommonUtils {
     public static User getLoginUser(){
         return (User) getSession().getAttribute("loginUser");
     }
-
 }
