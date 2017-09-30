@@ -1,5 +1,7 @@
 package cn.com.sinosoft.dao.base;
 
+import cn.com.sinosoft.utils.pageBean;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,4 +15,6 @@ public interface IBaseDao<T> {
     List<T> findAll();
 
     void excuteUpdate(String s, Object...objects);
+
+    void pageQuery(pageBean pageBean);
 }

@@ -36,4 +36,10 @@
             <one-to-many class="cn.com.sinosoft.domain.Decidedzone" />
         </set>
     </class>
+    <query name="staff.delete">
+        update Staff set deltag = '1' where  id = ?
+    </query>
+    <query name="staff.restore">
+        update Staff set deltag = '0' where  id = ?
+    </query>
 </hibernate-mapping>
