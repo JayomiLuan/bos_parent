@@ -26,6 +26,9 @@
 <script
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
+<script
+	src="${pageContext.request.contextPath }/js/jquery.ocupload-1.1.2.js"
+	type="text/javascript"></script>
 <script type="text/javascript">
 	function doAdd(){
 		$('#addRegionWindow').window("open");
@@ -36,7 +39,25 @@
 	}
 	
 	function doDelete(){
-		alert("删除...");
+	    var rows = $('#grid').datagrid('getSelections');
+        if(rows.length <= 0){
+            //如果未选中，弹出提示
+            $.messager.alert('提示信息','请您选择要删除的数据！','warning');
+        }else{
+            //选中数据
+            $.messager.confirm('确认信息','你确认要删除吗?',function (r) {
+                if(r){
+                    var array = new Array();
+                    for(var i = 0; i < rows.length ;i++) {
+                        alert(rows[i].id);
+                        array.push(rows[i].id);
+                    }
+                    var ids = array.join(',');
+                    location.href="${pageContext.request.contextPath}/regionAction_delete.action?ids="+ids;
+                }
+            });
+		}
+
 	}
 	
 	//工具栏
@@ -126,6 +147,13 @@
 	        height: 400,
 	        resizable:false
 	    });
+		$('#button-import').upload({
+			action:'${pageContext.request.contextPath}/regionAction_importXls.action',
+			name:'regionFile',
+			onComplete:function (data,self,element) {
+				alert(data);
+            }
+		})
 		
 	});
 
@@ -142,11 +170,23 @@
 		<div region="north" style="height:31px;overflow:hidden;" split="false" border="false" >
 			<div class="datagrid-toolbar">
 				<a id="save" icon="icon-save" href="#" class="easyui-linkbutton" plain="true" >保存</a>
+				<script>
+					$(function () {
+						$('#save').click(function () {
+							var v = $('#regionFrom').form('validate');
+							if(v){
+								$('#regionFrom').submit();
+							}
+                        })
+                    })
+
+				</script>
+
 			</div>
 		</div>
 		
 		<div region="center" style="overflow:auto;padding:5px;" border="false">
-			<form id="regionFrom" action="${pageContext.request.contextPath}/regionAction_add.action">
+			<form id="regionFrom" action="${pageContext.request.contextPath}/regionAction_add.action" method="post">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">区域信息</td>
@@ -166,14 +206,6 @@
 					<tr>
 						<td>邮编</td>
 						<td><input type="text" name="postcode" class="easyui-validatebox" required="true"/></td>
-					</tr>
-					<tr>
-						<td>简码</td>
-						<td><input type="text" name="shortcode" class="easyui-validatebox" required="true"/></td>
-					</tr>
-					<tr>
-						<td>城市编码</td>
-						<td><input type="text" name="citycode" class="easyui-validatebox" required="true"/></td>
 					</tr>
 					</table>
 			</form>

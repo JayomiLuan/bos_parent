@@ -6,6 +6,8 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <display-name>Archetype Created Web Application</display-name>
 
+
+
   <!-- 解决hibernate延迟加载问题的过滤器 -->
   <filter>
     <filter-name>openSessionInViewFilter</filter-name>

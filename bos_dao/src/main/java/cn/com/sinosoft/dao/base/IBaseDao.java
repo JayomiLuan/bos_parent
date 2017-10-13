@@ -17,4 +17,6 @@ public interface IBaseDao<T> {
     void excuteUpdate(String s, Object...objects);
 
     void pageQuery(pageBean pageBean);
+
+    void saveOrUpdate(T entity);
 }
