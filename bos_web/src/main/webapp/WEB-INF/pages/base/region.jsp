@@ -35,7 +35,9 @@
 	}
 	
 	function doView(){
-		alert("修改...");
+        $('#alterRegionWindow').window("open");
+        var row = $('#grid').datagrid('getSelected');
+        $('#alterForm').form('load',row);
 	}
 	
 	function doDelete(){
@@ -49,7 +51,6 @@
                 if(r){
                     var array = new Array();
                     for(var i = 0; i < rows.length ;i++) {
-                        alert(rows[i].id);
                         array.push(rows[i].id);
                     }
                     var ids = array.join(',');
@@ -137,9 +138,19 @@
 			onDblClickRow : doDblClickRow
 		});
 		
-		// 添加、修改区域窗口
+		// 添加区域窗口
 		$('#addRegionWindow').window({
-	        title: '添加修改区域',
+	        title: '添加区域',
+	        width: 400,
+	        modal: true,
+	        shadow: true,
+	        closed: true,
+	        height: 400,
+	        resizable:false
+	    });
+		// 修改区域窗口
+		$('#alterRegionWindow').window({
+	        title: '修改区域',
 	        width: 400,
 	        modal: true,
 	        shadow: true,
@@ -166,7 +177,7 @@
 	<div region="center" border="false">
     	<table id="grid"></table>
 	</div>
-	<div class="easyui-window" title="区域添加修改" id="addRegionWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
+	<div class="easyui-window" title="区域添加" id="addRegionWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div region="north" style="height:31px;overflow:hidden;" split="false" border="false" >
 			<div class="datagrid-toolbar">
 				<a id="save" icon="icon-save" href="#" class="easyui-linkbutton" plain="true" >保存</a>
@@ -208,6 +219,55 @@
 						<td><input type="text" name="postcode" class="easyui-validatebox" required="true"/></td>
 					</tr>
 					</table>
+			</form>
+		</div>
+	</div>
+
+
+
+	<div class="easyui-window" title="区域修改" id="alterRegionWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
+		<div region="north" style="height:31px;overflow:hidden;" split="false" border="false" >
+			<div class="datagrid-toolbar">
+				<a id="alter" icon="icon-save" href="#" class="easyui-linkbutton" plain="true" >保存</a>
+				<script>
+                    $(function () {
+                        $('#alter').click(function () {
+                            var v = $('#alterFrom').form('validate');
+                            if(v){
+                                $('#alterFrom').submit();
+                            }
+                        })
+                    })
+
+				</script>
+
+			</div>
+		</div>
+
+		<div region="center" style="overflow:auto;padding:5px;" border="false">
+			<form id="alterForm" action="${pageContext.request.contextPath}/regionAction_alter.action" method="post">
+				<table class="table-edit" width="80%" align="center">
+					<tr class="title">
+						<td colspan="2">区域信息</td>
+					</tr>
+					<input type="hidden"  name="id" >
+					<tr>
+						<td>省</td>
+						<td><input type="text" name="province" class="easyui-validatebox" required="true"/></td>
+					</tr>
+					<tr>
+						<td>市</td>
+						<td><input type="text" name="city" class="easyui-validatebox" required="true"/></td>
+					</tr>
+					<tr>
+						<td>区</td>
+						<td><input type="text" name="district" class="easyui-validatebox" required="true"/></td>
+					</tr>
+					<tr>
+						<td>邮编</td>
+						<td><input type="text" name="postcode" class="easyui-validatebox" required="true"/></td>
+					</tr>
+				</table>
 			</form>
 		</div>
 	</div>
