@@ -120,4 +120,8 @@ public class RegionAction extends BaseAction<Region> {
         regionService.batchDelete(ids);
         return "list";
     }
+    public String alter(){
+        regionService.alter(model);
+        return "list";
+    }
 }

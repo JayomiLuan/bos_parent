@@ -33,11 +33,20 @@
 	function doAdd(){
 		$('#addRegionWindow').window("open");
 	}
-	
+
 	function doView(){
-        $('#alterRegionWindow').window("open");
-        var row = $('#grid').datagrid('getSelected');
-        $('#alterForm').form('load',row);
+        var row = $('#grid').datagrid('getSelections');
+        if(row.length <= 0){
+            //如果未选中,则弹出提示信息
+			$.messager.alert('提示信息','请您选择要修改的数据！','warning');
+		}else if(row.length >= 2){
+            //如果未选中,则弹出提示信息
+            $.messager.alert('提示信息','请您选择不超过一条的数据！','warning');
+		}else{
+            $('#alterRegionWindow').window("open");
+            var row = $('#grid').datagrid('getSelected');
+            $('#alterForm').form('load',row);
+		}
 	}
 	
 	function doDelete(){
@@ -168,8 +177,9 @@
 		
 	});
 
-	function doDblClickRow(){
-		alert("双击表格数据...");
+	function doDblClickRow(rowIndex,rowData){
+        $('#alterRegionWindow').window("open");
+        $('#alterForm').form('load',rowData);
 	}
 </script>	
 </head>
@@ -234,7 +244,7 @@
                         $('#alter').click(function () {
                             var v = $('#alterFrom').form('validate');
                             if(v){
-                                $('#alterFrom').submit();
+                                $('#alterForm').submit();
                             }
                         })
                     })

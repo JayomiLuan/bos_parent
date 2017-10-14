@@ -15,4 +15,6 @@ public interface IRegionService {
     void add(Region model);
 
     void batchDelete(String ids);
+
+    void alter(Region model);
 }
