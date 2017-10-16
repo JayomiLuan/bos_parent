@@ -59,4 +59,15 @@ public class RegionServiceImpl implements IRegionService {
         region.setShortcode(shortcode);
         region.setCitycode(PinYin4jUtils.hanziToPinyin(model.getCity().substring(0,model.getCity().length()-1)).replace(" ",""));
     }
+
+    @Override
+    public List<Region> findAll() {
+        return regionDao.findAll();
+    }
+
+    @Override
+    public List<Region> findByQ(String q) {
+
+        return regionDao.findByQ(q);
+    }
 }

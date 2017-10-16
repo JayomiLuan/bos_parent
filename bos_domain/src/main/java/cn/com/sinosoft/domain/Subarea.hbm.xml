@@ -8,10 +8,10 @@
             <column name="id" length="32" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="decidedzone" class="cn.com.sinosoft.domain.Decidedzone" fetch="select">
+        <many-to-one name="decidedzone" class="cn.com.sinosoft.domain.Decidedzone" fetch="select" >
             <column name="decidedzone_id" length="32" />
         </many-to-one>
-        <many-to-one name="region" class="cn.com.sinosoft.domain.Region" fetch="select">
+        <many-to-one name="region" class="cn.com.sinosoft.domain.Region" fetch="select" lazy="false">
             <column name="region_id" length="32" />
         </many-to-one>
         <property name="addresskey" type="java.lang.String">

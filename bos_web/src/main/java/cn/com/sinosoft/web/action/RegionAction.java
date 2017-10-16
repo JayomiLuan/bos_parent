@@ -124,4 +124,23 @@ public class RegionAction extends BaseAction<Region> {
         regionService.alter(model);
         return "list";
     }
+
+    private String q;
+    public void setQ(String q) {
+        this.q = q;
+    }
+    public String listAjax(){
+        List<Region> regionList;
+        if(StringUtils.isNotBlank(q)){
+            regionList = regionService.findByQ(q);
+        }else{
+            regionList =  regionService.findAll();
+        }
+        String[] excludes = {"postcode","shortcode","citycode","subareas"};
+        this.writeList2Json(regionList,excludes);
+        return NONE;
+    }
+
+
+
 }

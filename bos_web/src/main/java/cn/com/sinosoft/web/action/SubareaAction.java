@@ -12,7 +12,16 @@ import javax.annotation.Resource;
 public class SubareaAction  extends BaseAction<Subarea>{
     @Resource
     private SubareaService subareaService;
+    public String add(){
+        subareaService.add(model);
+        return "list";
+    }
 
-
+    public String pageQuery(){
+        subareaService.pageQuery(pageBean);
+        String[] excludes = {"dc","decidedzone","subareas","currentPage","pageSize"};
+        this.writeObject2Json(pageBean,excludes);
+        return NONE;
+    }
 
 }

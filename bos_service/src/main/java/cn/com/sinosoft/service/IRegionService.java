@@ -17,4 +17,8 @@ public interface IRegionService {
     void batchDelete(String ids);
 
     void alter(Region model);
+
+    List<Region> findAll();
+
+    List<Region> findByQ(String q);
 }

@@ -1,15 +1,26 @@
 package cn.com.sinosoft.service.impl;
 
 import cn.com.sinosoft.dao.SubareaDao;
+import cn.com.sinosoft.domain.Subarea;
 import cn.com.sinosoft.service.SubareaService;
+import cn.com.sinosoft.utils.pageBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
 
 @Transactional
 @Service
 public class SubareaServiceImpl implements SubareaService {
-    @Resource
+    @Autowired
     private SubareaDao subareaDao;
+
+    @Override
+    public void add(Subarea model) {
+        subareaDao.save(model);
+    }
+
+    @Override
+    public void pageQuery(pageBean pageBean) {
+        subareaDao.pageQuery(pageBean);
+    }
 }

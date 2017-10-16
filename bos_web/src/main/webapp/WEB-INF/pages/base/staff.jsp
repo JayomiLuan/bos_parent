@@ -204,7 +204,8 @@
 </head>
 <body class="easyui-layout" style="visibility:hidden;">
 	<div region="center" border="false">
-    	<table id="grid"></table>
+    	<table id="grid">
+		</table>
 	</div>
 	<div class="easyui-window" title="对收派员进行添加或者修改" id="addStaffWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div region="north" style="height:31px;overflow:hidden;" split="false" border="false" >
