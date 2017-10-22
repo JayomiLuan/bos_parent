@@ -41,7 +41,7 @@
             $.messager.alert('提示信息','请您选择不超过一条的数据！','warning');
         }else{
             $('#addSubareaWindow').window("open");
-            var row = $('#grid').datagrid('getSelections');
+            var row = $('#grid').datagrid('getSelected');
             $('#addSubareaForm').form('load',row);
 		}
 	}
@@ -215,7 +215,7 @@
 	        resizable:false
 	    });
 		$("#btn").click(function(){
-			alert("执行查询...");
+			$('#conditionQueryForm').submit();
 		});
 		
 	});
@@ -298,7 +298,7 @@
 	<!-- 查询分区 -->
 	<div class="easyui-window" title="查询分区窗口" id="searchWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form>
+			<form id="conditionQueryForm" action="'${pageContext.request.contextPath}/subareaAction_queryByCondition.action" method="post">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">查询条件</td>
