@@ -32,11 +32,38 @@
 	}
 	
 	function doEdit(){
-		alert("修改...");
+        var row = $('#grid').datagrid('getSelections');
+        if(row.length <= 0){
+            //如果未选中,则弹出提示信息
+            $.messager.alert('提示信息','请您选择要修改的数据！','warning');
+        }else if(row.length >= 2){
+            //如果未选中,则弹出提示信息
+            $.messager.alert('提示信息','请您选择不超过一条的数据！','warning');
+        }else{
+            $('#addSubareaWindow').window("open");
+            var row = $('#grid').datagrid('getSelections');
+            $('#addSubareaForm').form('load',row);
+		}
 	}
 	
 	function doDelete(){
-		alert("删除...");
+	    var rows = $('#grid').datagrid('getSelections');
+	    if(rows.length <= 0){
+	        $.messager.alert('提示信息','请您选择要删除的数据！','warning');
+		}else{
+            //选中数据
+            $.messager.confirm('确认信息','你确认要删除吗?',function (r) {
+                if(r){
+                    var array = new Array();
+                    for(var i = 0; i < rows.length ;i++) {
+                        array.push(rows[i].id);
+                    }
+                    var ids = array.join(',');
+                    location.href="${pageContext.request.contextPath}/subareaAction_delete.action?ids="+ids;
+                }
+            });
+        }
+
 	}
 	
 	function doSearch(){

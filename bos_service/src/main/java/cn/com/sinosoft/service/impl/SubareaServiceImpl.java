@@ -23,4 +23,13 @@ public class SubareaServiceImpl implements SubareaService {
     public void pageQuery(pageBean pageBean) {
         subareaDao.pageQuery(pageBean);
     }
+
+    @Override
+    public void delete(String ids) {
+        String[] idArr = ids.split(",");
+        for (String id : idArr) {
+            Subarea subarea = subareaDao.findById(id);
+            subareaDao.delete(subarea);
+        }
+    }
 }

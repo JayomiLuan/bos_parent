@@ -23,5 +23,14 @@ public class SubareaAction  extends BaseAction<Subarea>{
         this.writeObject2Json(pageBean,excludes);
         return NONE;
     }
+    private String ids;
+    public void setIds(String ids) {
+        this.ids = ids;
+    }
+
+    public String delete(){
+        subareaService.delete(ids);
+        return "list";
+    }
 
 }

@@ -9,4 +9,6 @@ public interface SubareaService {
     void add(Subarea model);
 
     void pageQuery(pageBean pageBean);
+
+    void delete(String ids);
 }
