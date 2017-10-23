@@ -42,4 +42,7 @@
     <query name="staff.restore">
         update Staff set deltag = '0' where  id = ?
     </query>
+    <query name="staff.findNoDel">
+        from Staff where deltag = '0'
+    </query>
 </hibernate-mapping>

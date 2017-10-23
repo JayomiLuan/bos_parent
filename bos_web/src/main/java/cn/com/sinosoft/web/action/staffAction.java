@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+
 @Controller
 @Scope("prototype")
 public class staffAction extends  BaseAction<Staff>{
@@ -43,5 +45,11 @@ public class staffAction extends  BaseAction<Staff>{
     public String edit(){
         staffService.edit(model);
         return "list";
+    }
+    public String listAjax(){
+        List<Staff> list =  staffService.findByCondition();
+        String[] exclude = {"decidedzones"};
+        this.writeList2Json(list,exclude);
+        return NONE;
     }
 }

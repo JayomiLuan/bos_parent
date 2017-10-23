@@ -74,7 +74,9 @@ public class SubareaAction  extends BaseAction<Subarea>{
         try {
             //两个头之一：content-type，告诉浏览器返回数据的格式
             String mimeType = ServletActionContext.getServletContext().getMimeType(filename);
+            System.out.println(mimeType);
             filename = FileUtils.encodeDownloadFilename(filename, agent);
+            System.out.println(filename);
             //一个流：指的是response的输出流
             ServletOutputStream os = ServletActionContext.getResponse().getOutputStream();
             ServletActionContext.getResponse().setContentType(mimeType);

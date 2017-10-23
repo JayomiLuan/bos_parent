@@ -1,8 +1,10 @@
 package cn.com.sinosoft.dao.base.impl;
 
 import cn.com.sinosoft.dao.base.IBaseDao;
+import cn.com.sinosoft.domain.Staff;
 import cn.com.sinosoft.utils.pageBean;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
@@ -101,5 +103,22 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
     @Override
     public void saveOrUpdate(T entity) {
         this.getHibernateTemplate().saveOrUpdate(entity);
+    }
+
+    /**
+     * 通用条件查询
+     * @param s
+     * @param objects
+     * @return
+     */
+    @Override
+    public List<Staff> findByCondition(String s,Object ...objects) {
+        Session session = this.getSessionFactory().getCurrentSession();
+        Query query = session.getNamedQuery(s);
+        int parm = 0;
+        for (Object object : objects) {
+            query.setParameter(parm++,object);
+        }
+        return query.list();
     }
 }

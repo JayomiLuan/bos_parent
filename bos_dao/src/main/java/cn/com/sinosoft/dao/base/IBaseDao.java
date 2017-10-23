@@ -1,5 +1,6 @@
 package cn.com.sinosoft.dao.base;
 
+import cn.com.sinosoft.domain.Staff;
 import cn.com.sinosoft.utils.pageBean;
 
 import java.io.Serializable;
@@ -19,4 +20,6 @@ public interface IBaseDao<T> {
     void pageQuery(pageBean pageBean);
 
     void saveOrUpdate(T entity);
+
+    List<Staff> findByCondition(String s,Object...objects);
 }

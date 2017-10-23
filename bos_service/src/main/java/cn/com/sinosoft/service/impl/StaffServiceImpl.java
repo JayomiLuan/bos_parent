@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class StaffServiceImpl implements IStaffService {
@@ -51,5 +53,10 @@ public class StaffServiceImpl implements IStaffService {
         staff.setHaspda(model.getHaspda());
         staff.setStandard(model.getStandard());
         staff.setStation(model.getStation());
+    }
+
+    @Override
+    public List<Staff> findByCondition() {
+        return staffDao.findByCondition("staff.findNoDel");
     }
 }
