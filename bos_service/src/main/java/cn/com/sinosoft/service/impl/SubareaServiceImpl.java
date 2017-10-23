@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 @Service
 public class SubareaServiceImpl implements SubareaService {
@@ -31,5 +33,10 @@ public class SubareaServiceImpl implements SubareaService {
             Subarea subarea = subareaDao.findById(id);
             subareaDao.delete(subarea);
         }
+    }
+
+    @Override
+    public List<Subarea> findAll() {
+        return subareaDao.findAll();
     }
 }
